@@ -40,7 +40,7 @@
                 </td>
                 <td><%= task.updated_at.to_s(:datetime_jp) %></td>
                 <td><%= link_to "詳細", task %></td>
-                <td></td>
+                <td><%= link_to "編集" , [:edit, task] %></td>
                 <td><%= link_to "削除", task, data: { method: :delete, confirm: "本当に削除しますか？"} %></td>
             </tr>
         <% end %>
