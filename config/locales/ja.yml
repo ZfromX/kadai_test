@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      task: 投稿
+    attributes:
+      task:
+        title: タイトル
+        start_date: 開始日
+        end_date: 終了日
+        day: 終日
+        memo: メモ

@@ -1,0 +1,55 @@
+<h3>予定一覧</h3>
+
+<% if flash[:notice_create] %>
+    <p class="notice_create"><%= flash[:notice_create] %></p>
+<% elsif flash[:notice_no_create] %>
+    <p class="notice_no_create"><%= flash[:notice_no_create] %></p>
+<% elsif flash[:notice_update] %>
+    <p class=":notice_update"><%= flash[:notice_update] %></p>
+<% elsif flash[:notice_no_update] %>
+    <p class=":notice_no_update"><%= flash[:notice_no_update] %></p>
+<% end %>
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>タイトル</th>
+            <th>開始日</th>
+            <th>終了日</th>
+            <th>終日</th>
+            <th>更新日時</th>
+            <th>詳細</th>
+            <th>編集</th>
+            <th>削除</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @tasks.each do |task| %>
+            <tr>
+                <td><%= task.id %></td>
+                <td><%= task.title %></td>
+                <td><%= task.start_date %></td>
+                <td><%= task.end_date %></td>
+                <td>
+                    <% if task.is_all_day == true %>
+                    <%= "○" %>
+                    <% else task.is_all_day == false %>
+                    <% end %></td>
+                </td>
+                <td><%= task.updated_at.to_s(:datetime_jp) %></td>
+                <td><%= link_to "詳細", task %></td>
+                <td><%= link_to "編集" , [:edit, task] %></td>
+                <td><%= link_to "削除", task, data: { method: :delete, confirm: "本当に削除しますか？"} %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<p><%= link_to "予定の新規登録", :new_task %></p>
+
+<footer>
+    <h3>現在の日時 : <%= Date.current.strftime("%Y年 %m月 %d日") %></h3>
+    <h3>スケジュール合計 : <%= @tasks.count %></h3>
+</footer>
