@@ -22,8 +22,13 @@
                 <td><%= task.title %></td>
                 <td><%= task.start_date %></td>
                 <td><%= task.end_date %></td>
-                <td><%= task.is_all_day %></td>
-                <td><%= task.updated_at %></td>
+                <td>
+                    <% if task.is_all_day == true %>
+                    <%= "○" %>
+                    <% else task.is_all_day == false %>
+                    <% end %></td>
+                </td>
+                <td><%= task.updated_at.to_s(:datetime_jp) %></td>
                 <td></td>
                 <td></td>
                 <td><%= link_to "削除", task, data: { method: :delete, confirm: "本当に削除しますか？"} %></td>
@@ -33,3 +38,8 @@
 </table>
 
 <p><%= link_to "予定の新規登録", :new_task %></p>
+
+<footer>
+    <h3>現在の日時 : <%= Date.current.strftime("%Y年 %m月 %d日") %></h3>
+    <h3>スケジュール合計 : <%= @tasks.count %></h3>
+</footer>
