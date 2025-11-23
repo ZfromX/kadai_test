@@ -1,5 +1,7 @@
 <h3>ユーザー新規作成</h3>
 
+<%= render "shared/error", obj: @task %>
+
 <%= form_with model: @task do |f| %>
     <table>
         <tr>
