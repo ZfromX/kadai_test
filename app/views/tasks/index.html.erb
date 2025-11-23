@@ -1,5 +1,15 @@
 <h3>予定一覧</h3>
 
+<% if flash[:notice_create] %>
+    <p class="notice_create"><%= flash[:notice_create] %></p>
+<% elsif flash[:notice_no_create] %>
+    <p class="notice_no_create"><%= flash[:notice_no_create] %></p>
+<% elsif flash[:notice_update] %>
+    <p class=":notice_update"><%= flash[:notice_update] %></p>
+<% elsif flash[:notice_no_update] %>
+    <p class=":notice_no_update"><%= flash[:notice_no_update] %></p>
+<% end %>
+
 <table>
     <thead>
         <tr>
@@ -29,7 +39,7 @@
                     <% end %></td>
                 </td>
                 <td><%= task.updated_at.to_s(:datetime_jp) %></td>
-                <td></td>
+                <td><%= link_to "詳細", task %></td>
                 <td></td>
                 <td><%= link_to "削除", task, data: { method: :delete, confirm: "本当に削除しますか？"} %></td>
             </tr>
